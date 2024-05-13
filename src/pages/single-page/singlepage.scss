@@ -1,0 +1,30 @@
+.btn {
+    color: #fff;
+    font-size: 19px;
+    background-color: aqua;
+    padding: 3px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 5px;
+    background-color: rgb(77, 141, 244);
+}
+
+.btn:hover {
+    background-color: rgb(32, 115, 250);
+}
+
+.box {
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+    border: 2px solid white;
+    border-radius: 15px;
+    box-shadow: -2px 8px 32px white;
+    width: 515px;
+    padding: 30px;
+}
+
+.add {
+    margin-top: 10px;
+}

@@ -1,0 +1,53 @@
+import request from "../config"
+
+export interface PostData{
+    email: string,
+    first_name: string,
+    gender: string,
+    last_name: string,
+    password: string,
+    age:number,
+    phone_number: string,
+    id?: string,
+}
+
+export interface UpdateData extends PostData{
+    access_token: string,
+    age: number,
+    phone_number: string,
+    refresh_token: string
+}
+
+interface getParams{
+    page:number;
+    limit:number;
+}
+
+
+
+interface Worker{
+    post : (data:PostData)=> any,
+    delete : (id:string)=> any,
+    get : (params:getParams)=> any,
+    update : (data:UpdateData)=> any,
+}
+
+export interface StoreWorker {
+    isLoader:boolean;
+    data:any[];
+    totlCount:number;
+    getData: (params:getParams)=> Promise <any>;
+    postData: (data:PostData)=> Promise <any>;
+    deleteData: (id:string)=> Promise <any>;
+    updateData: (data:UpdateData)=> Promise <any>;
+}
+
+
+
+
+export const worker:Worker = {
+    post: (data)=> request.post("/worker" , data),
+    delete: (id)=> request.delete(`/worker/${id}`),
+    get: (params)=> request.get(`/workers?page=${params.page}&limit=${params.limit}`),
+    update: (data)=> request.put(`/worker`, data)
+}
