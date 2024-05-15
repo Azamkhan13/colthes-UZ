@@ -15,7 +15,7 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: 400,
-  bgcolor: "trasnparent",
+  bgcolor: "#fff",
   border: "2px solid #FFF",
   boxShadow: 24,
   p: 4,
@@ -74,14 +74,14 @@ export default function ModalServicesEdit({ data }: any) {
             onSubmit={handelSubmit}
           >
             <Form className=" max-w-[600px]  w-full flex flex-col gap-[12px]">
-              <h1 className="text-center mb-2 text-[26px] font-bold text-white">
+              <h1 className="text-center mb-2 text-[26px] font-bold text-slate-500">
                 category you want to change
               </h1>
               <Field
                 as={TextField}
                 label={data?.category_name}
                 placeholder={data?.category_name}
-                sx={{ "& input": { color: "white", fontSize: "20px", border: "solid #FFF" } }}
+                sx={{ "& input": { color: "black", fontSize: "20px" } }}
                 type="text"
                 name="category_name"
                 className=" w-[100%]  mb-3 outline-none py-0"

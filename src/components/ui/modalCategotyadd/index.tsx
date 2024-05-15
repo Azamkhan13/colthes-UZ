@@ -13,7 +13,7 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: 400,
-  bgcolor: "transparent",
+  bgcolor: "#fff",
   border: "2px solid #000",
   boxShadow: 24,
   p: 4,
@@ -70,7 +70,7 @@ export default function BasicModal() {
             onSubmit={handelSubmit}
           >
             <Form className=" max-w-[600px]  w-full flex flex-col gap-[12px]">
-              <h1 className="text-center mb-2 text-[26px] font-bold text-white">
+              <h1 className="text-center mb-2 text-[26px] font-bold text-slate-500">
                 Add a category
               </h1>
               <Field
@@ -78,7 +78,7 @@ export default function BasicModal() {
                 label="category name"
                 sx={{
                   "& input": {
-                    color: "#FFF",
+                    color: "#000",
                     fontSize: "20px",
                     border: "none",
                   },

@@ -1,20 +1,24 @@
 import { useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
-import {ProductModalAdd} from "../../components"
+import { ProductModalAdd } from "../../components";
+import { IconButton, InputBase, Paper } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
 import { Table } from "../../components";
-import  useProductStore from "../../store/product"
+import useProductStore from "../../store/product";
+import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
+import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 
 function index() {
+  const [countPage, setCountPage] = useState(1);
+  const [countLimit] = useState(0);
+  const { data, isLoader, getProduct, deleteProduct, totlCount } =
+    useProductStore();
+  const [change, setChange] = useState("");
 
-  const [countPage] = useState(1);
-  const [countLimit] = useState(10);
-  const {  data, isLoader, getProduct, deleteProduct} = useProductStore();
-
-
+  const allCount = Math.ceil(totlCount / countLimit);
   useEffect(() => {
-    getProduct({ page: countPage, limit: countLimit });
-  }, [countPage]);
-
+    getProduct({ page: countPage, limit: 5, name: change });
+  }, [countPage, change]);
 
   const theder = [
     { title: "T/r", value: "t/r" },
@@ -27,11 +31,60 @@ function index() {
   ];
   return (
     <>
-     <ToastContainer/>
-      <div className="py-3">
-          <ProductModalAdd/>
+      <ToastContainer />
+      <div className=" flex items-center justify-between">
+        <div className="w-96">
+          <Paper
+            component="form"
+            sx={{
+              p: "2px 4px",
+              width: 400,
+              alignItems: "center",
+              display: "flex",
+            }}
+          >
+            <InputBase
+              sx={{ ml: 1, flex: 1 }}
+              placeholder="Search"
+              inputProps={{ "aria-label": "serch google maps" }}
+              onChange={(e) => setChange(e.target.value)}
+            />
+            <IconButton type="button" sx={{ p: "15px" }} aria-label="search">
+              <SearchIcon />
+            </IconButton>
+          </Paper>
+        </div>
+        <div className="py-3">
+          <ProductModalAdd />
+        </div>
       </div>
-      <Table heders={theder}  body={data} skelatonLoader={isLoader} deletIdData={deleteProduct}/> 
+      <Table
+        heders={theder}
+        body={data}
+        skelatonLoader={isLoader}
+        deletIdData={deleteProduct}
+      />
+      <div className="flex items-center justify-end gap-3">
+        <button
+          onClick={() => {
+            setCountPage(countPage - 1);
+          }}
+          disabled={countPage == 1}
+          className="py-1 px-1 border rounded-lg hover:shadow-md active:shadow-sm duration-200 cursor-pointer "
+        >
+          <ArrowLeftIcon />
+        </button>
+        <span className="text-[20px] text-center">{countPage}</span>
+        <button
+          onClick={() => {
+            setCountPage(countPage + 1);
+          }}
+          disabled={countPage == allCount}
+          className="py-1 px-1 border rounded-lg hover:shadow-md active:shadow-sm duration-200 cursor-pointer "
+        >
+          <ArrowRightIcon />
+        </button>
+      </div>
     </>
   );
 }

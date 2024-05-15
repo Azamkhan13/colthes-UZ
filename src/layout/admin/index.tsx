@@ -108,6 +108,7 @@ export default function MiniDrawer() {
     localStorage.removeItem("token");
     navigate("/");
   };
+  
 
   return (
     <Box sx={{ display: 'flex' }}>

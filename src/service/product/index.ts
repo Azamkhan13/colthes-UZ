@@ -39,6 +39,7 @@ export interface StoreProduct {
     totlCount:number;
     idData:string[]
     getProduct: (params:getParams)=> Promise <any>;
+    getIdProduct: (id:string | undefined)=> Promise <any>;
     postProduct: (data:PostData)=> Promise <any>;
     deleteProduct: (id:string)=> Promise <any>;
     updateProduct: (data:UpdateData)=> Promise <any>;

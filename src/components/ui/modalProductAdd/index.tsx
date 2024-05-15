@@ -36,18 +36,18 @@ export default function BasicModal(props:any) {
   const handleClose = () => setOpen(false);
 
   const initialValues: any = {
-    age_max: "",
-    age_min: "",
-    category_id: "",
-    color: "",
-    cost: "",
-    count: "",
-    discount: "",
-    for_gender: "",
-    made_in: "",
-    product_name: "",
-    size: "",
-    description: "",
+    age_max: props?.data?.age_max || '',
+    age_min: props?.data?.age_min || "",
+    category_id: props?.data?.category_id || "",
+    color: props?.data?.color || "",
+    cost: props?.data?.cost || "",
+    count: props?.data?.count || "",
+    discount: props?.data?.discount || "",
+    for_gender: props?.data?.for_gender || "",
+    made_in: props?.data?.made_in || "",
+    product_name: props?.data?.product_name || "",
+    size: props?.data?.size || "",
+    description: props?.data?.description || "",
   };
 
   const validationSchema = Yup.object().shape({
@@ -81,12 +81,11 @@ export default function BasicModal(props:any) {
       console.log(data);
     }, 1000);
   }, []);
+  
 
   const handleSubmit = async (values: any) => {
+    
     // console.log(values);
-    
-    
-    
     if(props.id){
         values.product_id = props.id
         props.updateProduct(values)
@@ -111,7 +110,7 @@ export default function BasicModal(props:any) {
         onClick={handleOpen}
         className="py-2 px-6 text-white font-semibold bg-[#2389DA] hover:bg-blue-800 active:bg-[#2389DA] duration-200 rounded-lg"
       >
-        Mahsulot qo'shing
+        Open
       </button>
       <Modal
         open={open}
@@ -138,6 +137,7 @@ export default function BasicModal(props:any) {
                     type="number"
                     name="cost"
                     className=" w-[100%]  mb-3 outline-none py-0"
+                    
                   />
                   <ErrorMessage
                     name="cost"
